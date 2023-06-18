@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SubSection from "../../../SubSection";
 import City from "./components/City";
-import group from "../../../../apis/group";
+import group from "../../../../apis/OpenWeatherMap/apis/group";
 
 // const OTHER_CITIES = [
 //   { name: "Sydney", temperature: 12, weather: { code: "04n", name: "Clouds" } },
@@ -9,16 +9,18 @@ import group from "../../../../apis/group";
 //   { name: "Perth", temperature: 19, weather: { code: "01d", name: "Clear" } },
 // ];
 
-const OtherCities = () => {
+const OtherCities = ({ onCityClick }) => {
   const [others, setOthers] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     group()
       .then((data) => {
-        const list = data.list.map(({ name, main, weather }) => ({
+        const list = data.list.map(({ name, main, coord, weather }) => ({
           name,
           temperature: parseInt(main.temp),
+          lat: coord.lat,
+          lon: coord.lon,
           weather: { code: weather[0].icon, name: weather[0].main },
         }));
         setOthers(list);
@@ -29,12 +31,13 @@ const OtherCities = () => {
   return (
     <SubSection title="Other Cities">
       {loading && <div>Loading</div>}
-      {others?.map(({ name, temperature, weather }) => (
+      {others?.map(({ name, temperature, weather, lon, lat }) => (
         <City
           key={name}
           name={name}
           temperature={temperature}
           weather={weather}
+          onClick={() => onCityClick({ name, lat, lon })}
         />
       ))}
     </SubSection>

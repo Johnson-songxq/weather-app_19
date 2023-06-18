@@ -31,17 +31,20 @@ import DayOfWeek from "./components/DayOfWeek";
 
 const Forecast = ({ loading, forecast }) => (
   <SubSection title="Forecast">
-    {loading && <div>Loading</div>}
-    <div className="flex gap-4 justify-between">
-      {forecast?.map(({ name, weather, temperature }) => (
-        <DayOfWeek
-          key={name}
-          name={name}
-          weather={weather}
-          temperature={temperature}
-        />
-      ))}
-    </div>
+    {loading ? (
+      <div>Loading</div>
+    ) : (
+      <div className="flex gap-4 justify-between">
+        {forecast?.map(({ name, weather, temperature }) => (
+          <DayOfWeek
+            key={name}
+            name={name}
+            weather={weather}
+            temperature={temperature}
+          />
+        ))}
+      </div>
+    )}
   </SubSection>
 );
 

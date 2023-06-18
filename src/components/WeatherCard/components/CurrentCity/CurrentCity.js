@@ -5,7 +5,7 @@ import Details from "./components/Details";
 import Weather from "./components/Weather";
 import bg from "./assets/current-city-bg.jpg";
 
-const CurrentCity = ({ current, loading }) => (
+const CurrentCity = ({ name, current, loading }) => (
   <BackgroundImage image={bg}>
     <div className="flex justify-between gap-48 py-16 px-24 relative">
       <div>
@@ -21,7 +21,7 @@ const CurrentCity = ({ current, loading }) => (
           loading={loading}
         />
       </div>
-      <Name>Melbourne</Name>
+      <Name>{name}</Name>
       <div className="h-[25px] bg-black/50 absolute bottom-0 inset-x-0"></div>
     </div>
   </BackgroundImage>

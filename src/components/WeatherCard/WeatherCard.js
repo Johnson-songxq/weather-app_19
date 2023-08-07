@@ -44,7 +44,6 @@ const WeatherCard = () => {
     <div className="bg-white rounded-3xl shadow-2xl	shadow-black/50	overflow-hidden">
       <CurrentCity name={city.name} current={current} loading={loading} />
       <div className="flex gap-12 px-12 py-9">
-        {/* <OtherCities onCityClick={setCity} /> */}
         <OtherCities onCityClick={setCity} />
         <div className="w-[3px] bg-black/10"></div>
         <div className="flex-1">

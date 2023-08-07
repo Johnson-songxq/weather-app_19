@@ -1,50 +1,47 @@
-##第一步：将设计好的 UI 划分为组件层级
-在按照责任划分组件的时候，出现了重名，说明了这个组件**有可能**是一个通用组件，可以被复用
+# How to write a React Web Application
+## 1st split the UI into components
+You may spli the UI into components according to their responsibilities.  If some of the componets have same name, they may be a common component which can be reused.  So make a reusable component.
 
-可读？
-可维护？
-可复用？
+Pay attention to the following methodologies:
+- readable
+- maintanable
+- reusable
 
-- 按照责任划分组件
-- 按照复用划分组件
+## 2nd make a static web application with React
 
-##第二步：使用 React 构建一个静态版本 （提升熟练 HTML/CSS），非动态（Javascript 的）动态的
+## 3rd find those 'state' in the UI
+Every state is according to one specific change in the UI
+Every change in the UI is according to a 'state'
 
-##第三步：发现 UI 精简且完整的 state 表示
+Pay attention to the props passing
+- parent->children: props
+- children->parent: state lifting
+- sibling -> sibling: state lifting
 
-每一个 state 对应着至少一处 UI 变化
-每一处 UI 变化都对应着一个 State
+## 4th verify the location where states should be placed
 
-- 父传子, props
-- 子传父, state lifting
-- 兄弟相传/亲戚相传 state lifting
+## 5th add reverse data flow (change handler)
 
-像傻子一样写 React。将写法固定下来，不要去思考，通过大量练习，形成肌肉记忆。
-
-##第四步：验证 state 应该被放置在哪里
-
-##步骤五：添加反向数据流(change handler)
-
-- App(渲染 App 样式， 背景图片和布局，redux，路由)
-
-  - WeatherCard （渲染 WeatherCard 样式，细节样式 + 布局）
-    - CurrentCity（渲染 CurrentCity 样式，背景图片和布局）
-      - Temperature （渲染 Temperature 样式，细节样式）
-      - Weather（渲染 Weather 样式，细节样式）
-      - Meta（渲染 Meta 样式，布局）
-        - Humidity（渲染 Humidity 样式，细节样式）
-        - Wind（渲染 Wind 样式，细节样式）
-      - Name （渲染 Name 样式，细节样式）
-  - Othercities （渲染 Othercities 样式，布局和统筹所有 cities）
-    - City[] （渲染 City 样式，布局）
-      - Name（渲染 Name 样式，细节样式）
-      - Temperature （渲染 Temperature 样式，细节样式）
-      - WeatherIcon （渲染 WeatherIcon 样式，细节样式）
-  - Forecast （渲染样式，布局和统筹所有 days of week）
-    - DayofWeek[] （渲染 DayofWeek 样式，布局）
-      - Name（渲染 Name 样式，细节样式）
-      - WeatherIcon（渲染 WeatherIcon 样式，细节样式）
-      - Temperature（渲染 Temperature 样式，细节样式）
+## Final componments 
+- App(overall App style，background picture and layout，redux，routing)
+  - WeatherCard （WeatherCard style，detailed style and layout）
+    - CurrentCity（CurrentCity style，background picture and layout）
+      - Temperature （Temperature style，detail）
+      - Weather（Weather style，detail）
+      - Meta（Meta style，layout）
+        - Humidity（Humidity style，layout）
+        - Wind（Wind style，detailed layout）
+      - Name （Name style，detailed layout）
+  - Othercities （Othercities style）
+    - City[] （City style and layout）
+      - Name（Name style and layout）
+      - Temperature （Temperature style and layout）
+      - WeatherIcon （WeatherIcon style，and layout）
+  - Forecast （style，layout of days of week）
+    - DayofWeek[] （DayofWeek style and layout）
+      - Name（Name style and layout）
+      - WeatherIcon（WeatherIcon style and detail）
+      - Temperature（Temperature style and detail）
 
 - Temperature
 - WeatherIcon
